@@ -1,0 +1,858 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Industry value chain summary</title>
+
+<style>
+
+body {
+
+font-family: 'Helvetica', sans-serif;
+
+background-color: #f0f0f0;
+
+margin: 0;
+
+}
+
+.graphic-container {
+
+position: absolute;
+
+left: -0.2cm;
+
+Top: -0.1cm; 
+
+width: 1400px; /* Set your desired width */
+
+height: 680px; /* Set your desired height */
+
+background-color: white; /* Ensure background is white for better image quality */
+
+overflow: hidden;
+
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.circle, .rounded-rect, .background-rect {
+
+position: absolute;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+color: white;
+
+font-size: 0.5cm;
+
+}
+
+.circle {
+
+width: 1cm;
+
+height: 1cm;
+
+background-color: #593ab6;
+
+border-radius: 50%;
+
+text-align: center;
+
+}
+
+.rounded-rect {
+
+height: 0.5cm;
+
+background-color: #593ab6;
+
+border-radius: 0.15cm;
+
+z-index: 2; /* Ensure these are above the background rectangles */
+
+}
+
+.background-rect {
+
+width: 2.5cm;
+
+height: 0.5cm;
+
+background-color: #d3d3d3;
+
+border-radius: 0.15cm;
+
+z-index: 1; /* Ensure these are below the current rectangles */
+
+}
+
+.editable {
+
+border: none;
+
+background: none;
+
+color: inherit;
+
+font: inherit;
+
+text-align: center;
+
+height: 65%;
+
+outline: none;
+
+width: 100%;
+
+}
+
+.editable-first-row {
+
+position: absolute;
+
+top: 0.55cm; /* Adjust position to place above the rectangle */
+
+left: 1cm;
+
+width: 1.5cm;
+
+transform: translateX(-50%);
+
+color: #737373;
+
+font-size: 0.4cm;
+
+text-align: left;
+
+background: none;
+
+border: none;
+
+outline: none;
+
+}
+
+.new-label {
+
+position: absolute;
+
+top: -4cm; /* Adjust to place the label above the rectangle */
+
+width: 2.75cm;
+
+font-size: 0.425cm;
+
+color: #333;
+
+text-align: center;
+
+word-wrap: break-word;
+
+line-height: 1.25;
+
+font-weight: bold;
+
+cursor: text; /* Show text cursor to indicate it's editable */
+
+}
+
+.triangle {
+
+width: 0;
+
+height: 0;
+
+border-left: 10px solid transparent;
+
+border-right: 10px solid transparent;
+
+border-bottom: 20px solid #21b4c4;
+
+position: absolute;
+
+transition: transform 0.5s, border-bottom-color 0.5s;
+
+}
+
+.label {
+
+position: absolute;
+
+font-size: 0.4cm;
+
+color: #333;
+
+text-align: right;
+
+width: 5cm;
+
+}
+
+.header {
+
+position: absolute;
+
+top: 1cm; /* Replace with desired y1 value */
+
+left: 1cm; /* Replace with desired x1 value */
+
+font-size: 0.65cm;
+
+font-weight: bold;
+
+color: #333;
+
+text-align: left;
+
+width: 100%;
+
+cursor: text; /* Show text cursor to indicate it's editable */
+
+}
+
+#downloadBtn {
+
+position: absolute;
+
+top: 0.5cm;
+
+Right: 0.5cm;
+
+z-index: 10;
+
+curser: auto;
+
+
+
+
+
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="graphic-container">
+
+
+
+<!-- Editable Header -->
+
+<div class="header" contenteditable="true">Industry value chain summary</div>
+
+
+
+<!-- Labels -->
+
+<div class="label" style="left: 1cm; top: 5.2cm;">Funding (USD Mn)</div>
+
+<div class="label" style="left: 1cm; top: 7.25cm;">Funding rounds</div>
+
+<div class="label" style="left: 1cm; top: 9.25cm;">Regulation</div>
+
+<div class="label" style="left: 1cm; top: 11.25cm;">Product updates</div>
+
+<div class="label" style="left: 1cm; top: 13.3cm;">Partnerships</div>
+
+<div class="label" style="left: 1cm; top: 15.3cm;">M&A</div>
+
+
+
+<!-- First row of rounded rectangles and triangles -->
+
+<div class="background-rect" style="left: 7.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 7.4cm; top: 3cm;" contenteditable="true">R&D</div>
+
+<div class="rounded-rect" style="left: 7.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 9.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-1"></div>
+
+
+
+<div class="background-rect" style="left: 12.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 12.4cm; top: 3cm;" contenteditable="true">Inbound activities</div>
+
+<div class="rounded-rect" style="left: 12.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 14.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-2"></div>
+
+
+
+<div class="background-rect" style="left: 17.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 17.4cm; top: 3cm;" contenteditable="true">Production or operations</div>
+
+<div class="rounded-rect" style="left: 17.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 19.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-3"></div>
+
+
+
+<div class="background-rect" style="left: 22.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 22.4cm; top: 3cm;" contenteditable="true">Outbound activities</div>
+
+<div class="rounded-rect" style="left: 22.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 24.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-4"></div>
+
+
+
+<div class="background-rect" style="left: 27.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 27.4cm; top: 3cm;" contenteditable="true">Marketing and sales</div>
+
+<div class="rounded-rect" style="left: 27.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 29.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-5"></div>
+
+
+
+<div class="background-rect" style="left: 32.5cm; top: 5cm;"></div>
+
+<div class="new-label" style="left: 32.4cm; top: 3cm;" contenteditable="true">Support activities</div>
+
+<div class="rounded-rect" style="left: 32.5cm; top: 5cm;">
+
+<input class="editable-first-row" type="text" value="0">
+
+</div>
+
+<div class="triangle" style="left: 34.3cm; top: 5.65cm; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 16px solid #21b4c4;" id="triangle-6"></div>
+
+
+
+<!-- Second row of circles and triangles -->
+
+<div class="circle" style="left: 7.75cm; top: 7cm;"><span class="editable" contenteditable="true">0</span></div>
+
+<div class="triangle" style="left: 9cm; top: 7.25cm;" id="triangle-7"></div>
+
+<div class="circle" style="left: 12.75cm; top: 7cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 14cm; top: 7.25cm;" id="triangle-8"></div>
+
+<div class="circle" style="left: 17.75cm; top: 7cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 19cm; top: 7.25cm;" id="triangle-9"></div>
+
+<div class="circle" style="left: 22.75cm; top: 7cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 24cm; top: 7.25cm;" id="triangle-10"></div>
+
+<div class="circle" style="left: 27.75cm; top: 7cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 29cm; top: 7.25cm;" id="triangle-11"></div>
+
+<div class="circle" style="left: 32.75cm; top: 7cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 34cm; top: 7.25cm;" id="triangle-12"></div>
+
+
+
+<!-- Third row of circles and triangles -->
+
+<div class="circle" style="left: 7.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 9cm; top: 9.25cm;" id="triangle-13"></div>
+
+<div class="circle" style="left: 12.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 14cm; top: 9.25cm;" id="triangle-14"></div>
+
+<div class="circle" style="left: 17.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 19cm; top: 9.25cm;" id="triangle-15"></div>
+
+<div class="circle" style="left: 22.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 24cm; top: 9.25cm;" id="triangle-16"></div>
+
+<div class="circle" style="left: 27.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 29cm; top: 9.25cm;" id="triangle-17"></div>
+
+<div class="circle" style="left: 32.75cm; top: 9cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 34cm; top: 9.25cm;" id="triangle-18"></div>
+
+
+
+<!-- Fourth row of circles and triangles -->
+
+<div class="circle" style="left: 7.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 9cm; top: 11.25cm;" id="triangle-19"></div>
+
+<div class="circle" style="left: 12.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 14cm; top: 11.25cm;" id="triangle-20"></div>
+
+<div class="circle" style="left: 17.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 19cm; top: 11.25cm;" id="triangle-21"></div>
+
+<div class="circle" style="left: 22.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 24cm; top: 11.25cm;" id="triangle-22"></div>
+
+<div class="circle" style="left: 27.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 29cm; top: 11.25cm;" id="triangle-23"></div>
+
+<div class="circle" style="left: 32.75cm; top: 11cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 34cm; top: 11.25cm;" id="triangle-24"></div>
+
+
+
+<!-- Fifth row of circles and triangles -->
+
+<div class="circle" style="left: 7.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 9cm; top: 13.25cm;" id="triangle-25"></div>
+
+<div class="circle" style="left: 12.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 14cm; top: 13.25cm;" id="triangle-26"></div>
+
+<div class="circle" style="left: 17.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 19cm; top: 13.25cm;" id="triangle-27"></div>
+
+<div class="circle" style="left: 22.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 24cm; top: 13.25cm;" id="triangle-28"></div>
+
+<div class="circle" style="left: 27.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 29cm; top: 13.25cm;" id="triangle-29"></div>
+
+<div class="circle" style="left: 32.75cm; top: 13cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 34cm; top: 13.25cm;" id="triangle-30"></div>
+
+
+
+<!-- Sixth row of circles and triangles -->
+
+<div class="circle" style="left: 7.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 9cm; top: 15.25cm;" id="triangle-31"></div>
+
+<div class="circle" style="left: 12.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 14cm; top: 15.25cm;" id="triangle-32"></div>
+
+<div class="circle" style="left: 17.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 19cm; top: 15.25cm;" id="triangle-33"></div>
+
+<div class="circle" style="left: 22.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 24cm; top: 15.25cm;" id="triangle-34"></div>
+
+<div class="circle" style="left: 27.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 29cm; top: 15.25cm;" id="triangle-35"></div>
+
+<div class="circle" style="left: 32.75cm; top: 15cm;"><span class="editable" contenteditable="true">0"></span></div>
+
+<div class="triangle" style="left: 34cm; top: 15.25cm;" id="triangle-36"></div>
+
+</div>
+
+
+
+<button id="downloadBtn">Download</button>
+
+
+
+<script>
+
+function hexToRgb(hex) {
+
+let bigint = parseInt(hex.slice(1), 16);
+
+let r = (bigint >> 16) & 255;
+
+let g = (bigint >> 8) & 255;
+
+let b = bigint & 255;
+
+return [r, g, b];
+
+}
+
+
+
+function rgbToHex(r, g, b) {
+
+return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+
+}
+
+
+
+function interpolateColor(color1, color2, factor) {
+
+let result = color1.slice();
+
+for (let i = 0; i < 3; i++) {
+
+result[i] = Math.round(result[i] + factor * (color2[i] - result[i]));
+
+}
+
+return result;
+
+}
+
+
+
+function updateCircleColors() {
+
+let circles = document.querySelectorAll('.circle, .rounded-rect');
+
+let rows = [
+
+Array.from(circles).slice(0, 6),
+
+Array.from(circles).slice(6, 12),
+
+Array.from(circles).slice(12, 18),
+
+Array.from(circles).slice(18, 24),
+
+Array.from(circles).slice(24, 30),
+
+Array.from(circles).slice(30, 36)
+
+];
+
+
+
+let startColor = hexToRgb("#DDD7F6");
+
+let endColor = hexToRgb("#341B99");
+
+
+
+rows.forEach(row => {
+
+let values = row.map(circle => {
+
+let input = circle.querySelector('.editable-first-row');
+
+if (input) {
+
+return parseInt(input.value.replace(/,/g, '')) || 0;
+
+} else {
+
+return parseInt(circle.querySelector('.editable').innerText.replace(/,/g, '')) || 0;
+
+}
+
+});
+
+let maxValue = Math.max(...values);
+
+let minValue = Math.min(...values);
+
+
+
+row.forEach((circle, index) => {
+
+let value = values[index];
+
+let factor = (value - minValue) / (maxValue - minValue || 1);
+
+let interpolatedColor = rgbToHex(...interpolateColor(startColor, endColor, factor));
+
+circle.style.backgroundColor = interpolatedColor;
+
+});
+
+});
+
+}
+
+
+
+function updateRectangleWidths() {
+
+let rectangles = document.querySelectorAll('.rounded-rect');
+
+let totalWidthCm = 2.5; // Total width in cm
+
+let totalValue = 0;
+
+
+
+// Calculate the total value from all inputs
+
+rectangles.forEach(rect => {
+
+let input = rect.querySelector('.editable-first-row');
+
+totalValue += parseInt(input.value.replace(/,/g, '')) || 0;
+
+});
+
+
+
+// Update the width of each rectangle based on its proportion of the total value
+
+rectangles.forEach(rect => {
+
+let input = rect.querySelector('.editable-first-row');
+
+let value = parseInt(input.value.replace(/,/g, '')) || 0;
+
+let proportion = totalValue ? value / totalValue : 0;
+
+let widthCm = proportion * totalWidthCm;
+
+rect.style.width = `${widthCm}cm`;
+
+});
+
+}
+
+
+
+function formatNumberWithCommas(number) {
+
+return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+}
+
+
+
+function setCaretPosition(ctrl, pos) {
+
+if (ctrl.setSelectionRange) {
+
+ctrl.focus();
+
+ctrl.setSelectionRange(pos, pos);
+
+} else if (ctrl.createTextRange) {
+
+var range = ctrl.createTextRange();
+
+range.collapse(true);
+
+range.moveEnd('character', pos);
+
+range.moveStart('character', pos);
+
+range.select();
+
+}
+
+}
+
+
+
+document.querySelectorAll('.editable-first-row').forEach(function(element) {
+
+element.addEventListener('input', function(e) {
+
+let value = this.value.replace(/,/g, '');
+
+if (value !== "" && !value.match(/^[0-9]*$/)) {
+
+value = value.replace(/[^0-9]/g, '');
+
+}
+
+let formattedValue = formatNumberWithCommas(value);
+
+let caretPosition = this.selectionStart + (formattedValue.length - this.value.length);
+
+this.value = formattedValue;
+
+setCaretPosition(this, caretPosition);
+
+updateRectangleWidths();
+
+updateCircleColors();
+
+});
+
+element.addEventListener('blur', function(e) {
+
+let value = this.value.replace(/,/g, '');
+
+this.value = formatNumberWithCommas(value);
+
+updateRectangleWidths();
+
+updateCircleColors();
+
+});
+
+});
+
+
+
+document.querySelectorAll('.editable:not(.editable-first-row)').forEach(function(element) {
+
+element.addEventListener('input', function(e) {
+
+var text = this.innerText;
+
+if (text !== "" && !text.match(/^[0-9]*$/)) {
+
+this.innerText = text.replace(/[^0-9]/g, '');
+
+}
+
+updateCircleColors();
+
+});
+
+});
+
+
+
+let triangles = document.querySelectorAll('.triangle');
+
+let clickCounts = new Array(triangles.length).fill(0);
+
+
+
+triangles.forEach(function(triangle, index) {
+
+triangle.addEventListener('click', function() {
+
+clickCounts[index]++;
+
+if (clickCounts[index] % 3 === 1) {
+
+triangle.style.transform = 'rotate(90deg)';
+
+triangle.style.borderBottomColor = '#f4d875';
+
+} else if (clickCounts[index] % 3 === 2) {
+
+triangle.style.transform = 'rotate(180deg)';
+
+triangle.style.borderBottomColor = '#e8599d';
+
+} else if (clickCounts[index] % 3 === 0) {
+
+triangle.style.transform = 'rotate(0deg)';
+
+triangle.style.borderBottomColor = '#21b4c4';
+
+}
+
+});
+
+});
+
+
+
+// Ensure all spans are properly initialized to "0"
+
+document.querySelectorAll('.editable').forEach(function(element) {
+
+if (element.innerText.trim() === "") {
+
+element.innerText = "0";
+
+} else if (element.innerText.trim() !== "0") {
+
+element.innerText = element.innerText.trim().replace(/[^0-9]/g, '') || "0";
+
+}
+
+});
+
+
+
+updateCircleColors();
+
+updateRectangleWidths();
+
+
+
+document.getElementById('downloadBtn').addEventListener('click', function () {
+
+html2canvas(document.querySelector('.graphic-container'), {
+
+useCORS: true,
+
+scale: 8 // Increase scale for higher resolution
+
+}).then(canvas => {
+
+let dataURL = canvas.toDataURL('image/png');
+
+let downloadLink = document.createElement('a');
+
+downloadLink.href = dataURL;
+
+downloadLink.download = 'graphic.png';
+
+document.body.appendChild(downloadLink);
+
+downloadLink.click();
+
+document.body.removeChild(downloadLink);
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+
